@@ -1,0 +1,48 @@
+# ---- Node / React ----
+node_modules/
+build/
+dist/
+.npm/
+.vite/
+.next/
+.env
+.env.*.local
+*.log
+
+# ---- Python / FastAPI ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.db
+*.sqlite3
+.env
+.env.local
+.venv/
+venv/
+env/
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.coverage
+
+# ---- IDEs e editores ----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ---- SOs e arquivos temporários ----
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+*.orig
+*.log
+
+# ---- Testes e relatórios ----
+htmlcov/
+coverage.xml
+test-results/

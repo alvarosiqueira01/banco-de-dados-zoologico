@@ -6,10 +6,23 @@ import RankingFaxineiros from "./components/RankingFaxineiros";
 import FormFuncionario from "./components/FormFuncionario";
 import FormHabitat from "./components/FormHabitat";
 import HabitatList from "./components/HabitatList";
+import FuncionarioList from "./components/FuncionarioList";
+import EmailsTardios from "./components/EmailsTardios";
+import HabitatsMedicados from "./components/HabitatsMedicados";
+import RankingAlimentosPorAnimal from "./components/RankingAlimentosPorAnimal";
+import FornecedorPrincipalAnimal from "./components/FornecedorPrincipalAnimal";
+import ProdutoList from "./components/ProdutoList";
 
 const App: React.FC = () => {
   const [inputIdFornecedor, setInputIdFornecedor] = useState("");
   const [idFornecedor, setIdFornecedor] = useState<number | null>(null);
+  const [inputIdAnimal, setInputIdAnimal] = useState("");
+  const [idAnimal, setIdAnimal] = useState<number | null>(null);
+
+  function handleBuscarFornecedorPrincipal() {
+    const parsed = parseInt(inputIdAnimal);
+    setIdAnimal(!isNaN(parsed) ? parsed : null);
+  }
 
   function handlePesquisar() {
     const parsedId = parseInt(inputIdFornecedor);
@@ -88,6 +101,12 @@ const App: React.FC = () => {
           <FormFuncionario />
         </section>
 
+        <section className="bg-[#101a34] p-6 rounded-xl shadow-md mb-10 border border-gray-700 max-w-3xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-5 text-white tracking-wide">
+            Funcionários
+          </h2>
+          <FuncionarioList />
+        </section>
         {/* Adicionar Habitat */}
         <section className="bg-[#101a34] p-6 rounded-xl shadow-md mb-10 border border-gray-700 max-w-3xl mx-auto">
           <h2 className="text-2xl font-semibold mb-5 text-white tracking-wide">
@@ -101,6 +120,60 @@ const App: React.FC = () => {
             Habitats
           </h2>
           <HabitatList />
+        </section>
+
+        <section className="bg-[#101a34] p-6 rounded-xl shadow-md mb-10 border border-gray-700 max-w-3xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-5 text-white tracking-wide">
+            Emails (Entrada Após 9h)
+          </h2>
+          <EmailsTardios />
+        </section>
+
+        <section className="bg-[#101a34] p-6 rounded-xl shadow-md mb-10 border border-gray-700 max-w-3xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-5 text-white tracking-wide">
+            Habitats com Animais Medicados
+          </h2>
+          <HabitatsMedicados />
+        </section>
+
+        <section className="bg-[#101a34] p-6 rounded-xl shadow-md mb-10 border border-gray-700 max-w-3xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-5 text-white tracking-wide">
+            Fornecedor Principal por Animal
+          </h2>
+
+          <div className="flex items-center gap-4 mb-4">
+            <input
+              type="number"
+              placeholder="ID do Animal"
+              className="bg-[#1a2b4f] text-white placeholder-gray-400 border border-gray-600 rounded-md p-1.5 px-3 w-48 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+              value={inputIdAnimal}
+              onChange={(e) => setInputIdAnimal(e.target.value)}
+            />
+            <button
+              onClick={handleBuscarFornecedorPrincipal}
+              className="px-3 py-1 pointer rounded border border-gray-600 bg-transparent hover:border-blue-500 hover:text-blue-400 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Pesquisar
+            </button>
+          </div>
+
+          {idAnimal !== null && (
+            <FornecedorPrincipalAnimal idAnimal={idAnimal} />
+          )}
+        </section>
+
+        <section className="bg-[#101a34] p-6 rounded-xl shadow-md mb-10 border border-gray-700 max-w-6xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-5 text-white tracking-wide">
+            Ranking de Alimentos por Animal
+          </h2>
+          <RankingAlimentosPorAnimal />
+        </section>
+
+        <section className="bg-[#101a34] p-6 rounded-xl shadow-md mb-10 border border-gray-700 max-w-3xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-5 text-white tracking-wide">
+            Produtos
+          </h2>
+          <ProdutoList />
         </section>
       </div>
     </div>
